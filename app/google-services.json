@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "900255142543",
+    "firebase_url": "https://triviup-d4f33-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "triviup-d4f33",
+    "storage_bucket": "triviup-d4f33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900255142543:android:7efe316657a8d44c5c56fa",
+        "android_client_info": {
+          "package_name": "com.example.triviup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900255142543-05ndavme0m3ob0d38j3rm3c25qcbvlno.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv9Lwah5Y5PG6JEKiGb_vNsyeAEvuaE7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900255142543-05ndavme0m3ob0d38j3rm3c25qcbvlno.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
