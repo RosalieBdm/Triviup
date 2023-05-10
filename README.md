@@ -16,22 +16,23 @@
     Fragment des paramètres : Ce fragment permet à l'utilisateur de modifier les paramètres de l'application, tels que la difficulté du quiz, la durée du temps imparti pour répondre à chaque question et la possibilité d'activer ou de désactiver certaines catégories.
     
     
-## Commit v1
+## Commit v2
    - fragment category:
-        - liste de categories , mène au fragment questions en cliquent sur la categorie
+        - liste de categories , mène au fragment questions en cliquant sur la categorie
    - Fragment Questions:
+        - affiche des questions de type "multiple" et "true/false"
         - Stocke 10 questions dans une room database 
         - affiche la question et les réponses 
-        - en cliquant sur une réponse, la bonne réponse devient verte et les autres rouges et un bouton "prochaine question apparait", à la 10eme question un bouton "results apparait" qui mène au fragment Results
-        - le score et le numero de la question sont affichés en haut 
+        - en cliquant sur une réponse, la bonne réponse devient verte et les autres rouges et un bouton "prochaine question apparait", à la 10eme question un bouton "results apparait" qui mène au fragment Results 
+        - timer de 10 secondes our répondre aux questions, sinon la réponse s'affiche et le bouton "prochaine question apparait"
+        - le score, le timer et le numero de la question sont affichés en haut 
         - bouton Category qui permet de retourner au fragment category ( sert pour les tests, à enlever à la fin)
    - Fragment Results:
         - affiche le score final du joueur
+        - score = réponsejuste * temps restant 
         - bouton Category pour retourner à la liste des catégories
    # A modifier
-    - modifier la requete API pour récuperer tous les types de questions et pas seulement les "multiple"
     - ajouter le choix de la difficulté 
-    - ajouter un temps imparti pour répondre et pondérer le score
     - faire un joli thème
     - mettre le score final dans la firebase
     - ajouter le fragment menu qui mène aux catégories 
