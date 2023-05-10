@@ -3,26 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/CategoryFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.triviup.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/CategoryFragment"
+        android:name="com.example.triviup.CategoryFragment"
+        android:label="Category"
+        tools:layout="@layout/fragment_category">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_CategoryFragment_to_QuestionsFragment"
+            app:destination="@id/QuestionsFragment" />
+
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.triviup.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/QuestionsFragment"
+        android:name="com.example.triviup.QuestionsFragment"
+        android:label="Question"
+        tools:layout="@layout/fragment_questions">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_QuestionsFragment_to_CategoryFragment"
+            app:destination="@id/CategoryFragment" />
+        <action
+            android:id="@+id/action_QuestionsFragment_to_ResultsFragment"
+            app:destination="@id/ResultsFragment" />
+        <argument
+            android:name="category"
+            app:argType="com.example.triviup.model.Category" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/ResultsFragment"
+        android:name="com.example.triviup.ResultsFragment"
+        android:label="Results"
+        tools:layout="@layout/fragment_results">
+
+        <action
+            android:id="@+id/action_ResultsFragment_to_CategoryFragment"
+            app:destination="@id/CategoryFragment" />
+
     </fragment>
 </navigation>
