@@ -1,13 +1,9 @@
 package com.example.triviup.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.example.triviup.model.Category
-import kotlinx.coroutines.launch
 
 class CategoryViewModel(
     application: Application
@@ -22,7 +18,6 @@ class CategoryViewModel(
 
 
     fun onCategoryItemClicked(category: Category) {
-        Log.d("aaaaaaaaaaaaaaaa", "Clicked on category")
         _navigateToQuestions.value = category
     }
 

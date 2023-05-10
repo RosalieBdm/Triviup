@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.triviup.database.QuestionDatabaseDao
 import com.example.triviup.model.Category
-import com.example.triviup.model.Question
 import java.lang.IllegalArgumentException
 
 class QuestionsViewModelFactory(

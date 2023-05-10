@@ -1,20 +1,12 @@
 package com.example.triviup
 
 import android.os.Bundle
-import android.text.Html
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.triviup.QuestionsFragment.Companion.correctAnswer
-import com.example.triviup.QuestionsFragment.Companion.enableButtons
-import com.example.triviup.QuestionsFragment.Companion.questionNumber
 import com.example.triviup.QuestionsFragment.Companion.score
-import com.example.triviup.adapter.QuestionAdapter
-import com.example.triviup.adapter.QuestionClickListener
 
 import com.example.triviup.databinding.FragmentResultsBinding
 

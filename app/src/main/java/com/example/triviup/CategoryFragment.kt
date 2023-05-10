@@ -17,9 +17,6 @@ import com.example.triviup.databinding.FragmentCategoryBinding
 import com.example.triviup.viewmodel.CategoryViewModel
 import com.example.triviup.viewmodel.CategoryViewModelFactory
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
 class CategoryFragment : Fragment() {
 
     private lateinit var viewModel: CategoryViewModel
@@ -32,7 +29,6 @@ class CategoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentCategoryBinding.inflate(inflater)
 
         val application = requireNotNull(this.activity).application

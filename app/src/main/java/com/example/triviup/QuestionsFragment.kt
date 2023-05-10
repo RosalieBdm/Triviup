@@ -1,6 +1,7 @@
 package com.example.triviup
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.Html
 import android.util.Log
 import android.view.*
@@ -32,6 +33,8 @@ class QuestionsFragment : Fragment() {
     private lateinit var questionDatabaseDao: QuestionDatabaseDao
     private var answersList = mutableListOf<String>()
     private lateinit var category : Category
+    private lateinit var timer : CountDownTimer
+    private var remainingTime : Int = 0
     private var questionList = listOf<Question>()
     private var _binding: FragmentQuestionsBinding? = null;
     private val binding get() = _binding!!
@@ -73,16 +76,31 @@ class QuestionsFragment : Fragment() {
 
         viewModel.questionList.observe(viewLifecycleOwner) { questions ->
             questionList = questions
-            getNextQuestion()
+            timer = getNextQuestion()
+            timer.start()
             questionAdapter.submitList(answersList)
         }
+
+
+
+
         return binding.root
     }
 
-    fun getNextQuestion(){
+    fun getNextQuestion() : CountDownTimer{
+        var timer = object: CountDownTimer(10000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                // Update UI with the remaining time
+                remainingTime= (millisUntilFinished / 1000).toInt()
+                binding.timerTextview.text = "Time: ${remainingTime}s"
+            }
 
+            override fun onFinish() {
+                waitNextQuestion(false)
+            }
+        }
         if (questionList.isNotEmpty()) {
-            Log.d("aaaaaaaaaaaaaaaaaaaaaaaaaa", "nouvelle question : ${questionNumber}")
+
             currentQuestion = questionList[questionNumber-1]
             questionNumber += 1
 
@@ -95,29 +113,29 @@ class QuestionsFragment : Fragment() {
             correctAnswer = Html.fromHtml(currentQuestion.correct_answer, Html.FROM_HTML_MODE_LEGACY)
                 .toString()
 
-            val randomIndex = Random.nextInt(answersList.size)
+            val randomIndex = Random.nextInt(answersList.size + 1)
             answersList.add(randomIndex,correctAnswer)
-            Log.d("uuuuuuuuuuuuuuuuuuuuu", "${currentQuestion.correct_answer}")
             currentQuestion.question =
                 Html.fromHtml(currentQuestion.question, Html.FROM_HTML_MODE_LEGACY)
                     .toString()
             binding.questionTextView.text = currentQuestion.question
             questionAdapter.submitList(answersList)
         } else {
-            Log.d("aaaaaaaaaaaaaaaaaaaaaaaaaa", "pas de questions , ${questionList.size}")
+            Log.d("getQuestionsError", "pas de questions , ${questionList.size}")
             binding.questionTextView.text = "no question"
         }
+        return timer
     }
 
     fun waitNextQuestion(isCorrect : Boolean){
         if (isCorrect) {
-            score+= 1
+            score+= 1*remainingTime
         }
+        timer.cancel()
         binding.score.text = "score : ${score}"
         enableButtons = false
         questionAdapter.notifyDataSetChanged()
         if (questionNumber > 10){
-            Log.d("rrrrrrrrrrrr", "maximum questions")
             binding.buttonToResults.visibility = View.VISIBLE
             binding.buttonToResults.isEnabled = true
         }else {
@@ -142,9 +160,10 @@ class QuestionsFragment : Fragment() {
             enableButtons = true
             binding.questionNumber.text = "Question ${questionNumber}/10"
             questionAdapter.notifyDataSetChanged()
-            Log.d("ttttttttttttt", "clicked on next")
-            getNextQuestion()
+            timer = getNextQuestion()
+            timer.start()
         }
+
 
     }
 
