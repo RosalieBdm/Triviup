@@ -18,7 +18,7 @@
     
 ## Commit v1
    - fragment category:
-    - liste de categories , mène au fragment questions en cliquent sur la categorie
+        - liste de categories , mène au fragment questions en cliquent sur la categorie
    - Fragment Questions:
     - Stocke 10 questions dans une room database 
     - affiche la question et les réponses 
