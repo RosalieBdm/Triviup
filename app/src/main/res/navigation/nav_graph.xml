@@ -49,6 +49,9 @@
         android:name="com.example.triviup.RankingFragment"
         android:label="Results"
         tools:layout="@layout/fragment_results">
+        <action
+            android:id="@+id/action_RankingFragment_to_CategoryFragment"
+            app:destination="@id/CategoryFragment" />
 
     </fragment>
 

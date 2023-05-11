@@ -59,7 +59,7 @@ class RankingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonToResult.setOnClickListener {
-            //findNavController().navigate(R.id.action_RankingFragment_to_ResultFragment)
+            findNavController().navigate(R.id.action_RankingFragment_to_CategoryFragment)
         }
 
     }
