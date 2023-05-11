@@ -67,7 +67,6 @@ class ResultFragment : Fragment() {
 
 
 
-
         return binding.root
     }
 

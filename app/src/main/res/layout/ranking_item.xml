@@ -6,6 +6,9 @@
         <variable
             name="rank"
             type="com.example.triviup.model.Rank" />
+        <variable
+            name="position"
+            type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,7 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_percent="0.33" />
+
 
         <View
             android:id="@+id/line_between_columns"

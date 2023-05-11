@@ -12,8 +12,9 @@ class RankListAdapter : ListAdapter<Rank, RankListAdapter.ViewHolder>(RankListDi
 
     class ViewHolder(private var binding: RankingItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(rank: Rank) {
+        fun bind(rank: Rank, position : Int) {
             binding.rank = rank
+            binding.position = position + 1
             binding.executePendingBindings()
         }
 
@@ -31,7 +32,7 @@ class RankListAdapter : ListAdapter<Rank, RankListAdapter.ViewHolder>(RankListDi
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position),position)
     }
 }
 
