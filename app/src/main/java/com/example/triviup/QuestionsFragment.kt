@@ -36,9 +36,9 @@ class QuestionsFragment : Fragment() {
     private lateinit var timer : CountDownTimer
     private var remainingTime : Int = 0
     private var questionList = listOf<Question>()
-    private var _binding: FragmentQuestionsBinding? = null;
+    private var _binding: FragmentQuestionsBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var difficulty : String
     private lateinit var questionAdapter : QuestionAdapter
 
     companion object{
@@ -51,10 +51,11 @@ class QuestionsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentQuestionsBinding.inflate(inflater)
         binding.lifecycleOwner = this
+        difficulty = QuestionsFragmentArgs.fromBundle(requireArguments()).difficulty.toString()
 
         category = QuestionsFragmentArgs.fromBundle(requireArguments()).category
         binding.categoryName.text = category.name
@@ -63,7 +64,7 @@ class QuestionsFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         questionDatabaseDao = QuestionDatabase.getInstance(application).questionDatabaseDao
 
-        viewModelFactory = QuestionsViewModelFactory(category,  questionDatabaseDao, application)
+        viewModelFactory = QuestionsViewModelFactory(category, difficulty,  questionDatabaseDao, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(QuestionsViewModel::class.java)
 
         val recyclerView = binding.questionRv
@@ -151,7 +152,8 @@ class QuestionsFragment : Fragment() {
         binding.buttonPrevious.setOnClickListener {
             viewModel.deleteQuestions()
             score = 0
-            findNavController().navigate(QuestionsFragmentDirections.actionQuestionsFragmentToCategoryFragment())
+            questionNumber = 1
+            findNavController().navigate(QuestionsFragmentDirections.actionQuestionsFragmentToMenuFragment())
         }
         binding.buttonToResults.setOnClickListener {
             viewModel.deleteQuestions()

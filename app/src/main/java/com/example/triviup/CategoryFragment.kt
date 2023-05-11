@@ -52,7 +52,7 @@ class CategoryFragment : Fragment() {
         viewModel.navigateToQuestions.observe(viewLifecycleOwner) { category ->
             category?.let {
                 this.findNavController().navigate(
-                    CategoryFragmentDirections.actionCategoryFragmentToQuestionsFragment(category)
+                    CategoryFragmentDirections.actionCategoryFragmentToDifficultyFragment(category)
                 )
                 viewModel.onQuestionsNavigated()
             }

@@ -61,7 +61,7 @@ class RankingFragment : Fragment() {
         binding.buttonToResult.setOnClickListener {
             QuestionsFragment.score = 0
 
-            findNavController().navigate(R.id.action_RankingFragment_to_CategoryFragment)
+            findNavController().navigate(R.id.action_RankingFragment_to_MenuFragment)
         }
 
     }
