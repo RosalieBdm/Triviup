@@ -23,7 +23,7 @@ class QuestionAdapter(private val questionClickListener: QuestionClickListener) 
             binding.answer = answer
             answerButton.text = answer
             binding.clickListener = questionClickListener
-            var backgroundColor = ContextCompat.getColor(context, R.color.purple_500)
+            var backgroundColor = ContextCompat.getColor(context, R.color.duck)
             if (QuestionsFragment.enableButtons) {
                 answerButton.isEnabled = true
                 answerButton.alpha = 1f

@@ -1,5 +1,6 @@
 package com.example.triviup
 
+import android.graphics.drawable.PictureDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.caverock.androidsvg.SVG
 import com.example.triviup.adapter.CategoryAdapter
 import com.example.triviup.adapter.CategoryClickListener
 import com.example.triviup.database.Categories
@@ -27,8 +29,9 @@ class MenuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMenuBinding.inflate(inflater)
-
-        val application = requireNotNull(this.activity).application
+        val svg = SVG.getFromResource(resources, R.raw.triviup_image)
+        val drawable = PictureDrawable(svg.renderToPicture())
+        binding.titleImage.setImageDrawable(drawable)
 
 
         return binding.root

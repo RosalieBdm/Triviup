@@ -1,5 +1,6 @@
 package com.example.triviup
 
+import android.graphics.drawable.PictureDrawable
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Html
@@ -7,9 +8,11 @@ import android.util.Log
 import android.view.*
 
 import android.media.MediaPlayer
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.caverock.androidsvg.SVG
 import com.example.triviup.adapter.QuestionAdapter
 import com.example.triviup.adapter.QuestionClickListener
 import com.example.triviup.database.QuestionDatabase
@@ -59,6 +62,12 @@ class QuestionsFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentQuestionsBinding.inflate(inflater)
         binding.lifecycleOwner = this
+
+        val svg = SVG.getFromResource(resources, R.raw.hourglass)
+        val drawable = PictureDrawable(svg.renderToPicture())
+        binding.timerImageview.setImageDrawable(drawable)
+
+
         difficulty = QuestionsFragmentArgs.fromBundle(requireArguments()).difficulty.toString()
 
         category = QuestionsFragmentArgs.fromBundle(requireArguments()).category
@@ -94,7 +103,7 @@ class QuestionsFragment : Fragment() {
             override fun onTick(millisUntilFinished: Long) {
                 // Update UI with the remaining time
                 remainingTime= (millisUntilFinished / 1000).toInt()
-                binding.timerTextview.text = "Time: ${remainingTime}s"
+                binding.timerTextview.text = "${remainingTime}s"
             }
 
             override fun onFinish() {
@@ -143,7 +152,7 @@ class QuestionsFragment : Fragment() {
             mediaPlayer = MediaPlayer.create(context, R.raw.count_down_audio);
         }
         timer.cancel()
-        binding.score.text = "score : ${score}"
+        binding.score.text = "Score : ${score}"
         enableButtons = false
         questionAdapter.notifyDataSetChanged()
         if (questionNumber > 10){
@@ -159,15 +168,13 @@ class QuestionsFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.buttonPrevious.setOnClickListener {
-            viewModel.deleteQuestions()
-            score = 0
-            questionNumber = 1
-            findNavController().navigate(QuestionsFragmentDirections.actionQuestionsFragmentToMenuFragment())
-        }
         binding.buttonToResults.setOnClickListener {
+            if(mediaPlayer != null) {
+                mediaPlayer.stop();
+            }
             viewModel.deleteQuestions()
             questionNumber = 1
+            timer.cancel()
             findNavController().navigate(QuestionsFragmentDirections.actionQuestionsFragmentToResultFragment())
         }
         binding.buttonNextQuestion.setOnClickListener {
@@ -179,6 +186,21 @@ class QuestionsFragment : Fragment() {
             timer = getNextQuestion()
             timer.start()
         }
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if(mediaPlayer != null) {
+                    mediaPlayer.stop();
+                }
+                timer.cancel()
+                viewModel.deleteQuestions()
+                score = 0
+                questionNumber = 1
+                findNavController().navigate(QuestionsFragmentDirections.actionQuestionsFragmentToMenuFragment())
+            }
+        }
+        callback.isEnabled = true
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
 
     }

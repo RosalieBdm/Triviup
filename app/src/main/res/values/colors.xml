@@ -9,5 +9,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
+    <color name="duck">#0D627D</color>
+    <color name="orange">#FF7038</color>
+    <color name="beige">#F0EDE9</color>
 </resources>
