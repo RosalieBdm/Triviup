@@ -41,6 +41,10 @@ class MenuFragment : Fragment() {
         binding.scoreboardButton.setOnClickListener {
             findNavController().navigate(R.id.action_MenuFragment_to_RankingFragment)
         }
+
+        binding.factButton.setOnClickListener {
+            findNavController().navigate(R.id.action_MenuFragment_to_factFragment)
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 
