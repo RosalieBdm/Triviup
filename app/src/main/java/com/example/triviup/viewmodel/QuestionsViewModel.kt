@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 
 class QuestionsViewModel(
     private val category : Category,
+    private val difficulty: String,
     private val questionDatabaseDao : QuestionDatabaseDao,
     application: Application
 ) : AndroidViewModel(application) {
@@ -62,11 +63,11 @@ class QuestionsViewModel(
 
 
 
-    fun getQuestions() {
+    fun getQuestions( ) {
         viewModelScope.launch {
             try {
                 val questionResponse: QuestionResponse =
-                    TriviaApi.questionRetrofitService.getQuestions(10, category.id)
+                    TriviaApi.questionRetrofitService.getQuestions(10, category.id, difficulty)
                 _questionList.value = questionResponse.results
                 _dataFetchStatus.value = DataFetchStatus.DONE
             } catch (e: Exception) {

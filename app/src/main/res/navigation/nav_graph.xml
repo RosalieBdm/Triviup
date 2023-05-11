@@ -3,7 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/CategoryFragment">
+    app:startDestination="@id/MenuFragment">
+
+    <fragment
+        android:id="@+id/MenuFragment"
+        android:name="com.example.triviup.MenuFragment"
+        android:label="Category"
+        tools:layout="@layout/fragment_menu">
+
+        <action
+            android:id="@+id/action_MenuFragment_to_CategoryFragment"
+            app:destination="@id/CategoryFragment" />
+        <action
+            android:id="@+id/action_MenuFragment_to_RankingFragment"
+            app:destination="@id/RankingFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/CategoryFragment"
@@ -12,8 +27,22 @@
         tools:layout="@layout/fragment_category">
 
         <action
-            android:id="@+id/action_CategoryFragment_to_QuestionsFragment"
+            android:id="@+id/action_CategoryFragment_to_DifficultyFragment"
+            app:destination="@id/DifficultyFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/DifficultyFragment"
+        android:name="com.example.triviup.DifficultyFragment"
+        android:label="Difficulty"
+        tools:layout="@layout/fragment_difficulty">
+
+        <action
+            android:id="@+id/action_DifficultyFragment_to_QuestionsFragment"
             app:destination="@id/QuestionsFragment" />
+        <argument
+            android:name="category"
+            app:argType="com.example.triviup.model.Category" />
 
     </fragment>
     <fragment
@@ -23,21 +52,24 @@
         tools:layout="@layout/fragment_questions">
 
         <action
-            android:id="@+id/action_QuestionsFragment_to_CategoryFragment"
-            app:destination="@id/CategoryFragment" />
+            android:id="@+id/action_QuestionsFragment_to_MenuFragment"
+            app:destination="@id/MenuFragment" />
         <action
             android:id="@+id/action_QuestionsFragment_to_ResultFragment"
             app:destination="@id/ResultFragment" />
         <argument
             android:name="category"
             app:argType="com.example.triviup.model.Category" />
+        <argument
+            android:name="difficulty"
+            app:argType="java.lang.String" />
 
     </fragment>
     <fragment
         android:id="@+id/ResultFragment"
         android:name="com.example.triviup.ResultFragment"
         android:label="Results"
-        tools:layout="@layout/fragment_results">
+        tools:layout="@layout/fragment_result">
 
         <action
             android:id="@+id/action_ResultFragment_to_RankingFragment"
@@ -48,10 +80,10 @@
         android:id="@+id/RankingFragment"
         android:name="com.example.triviup.RankingFragment"
         android:label="Results"
-        tools:layout="@layout/fragment_results">
+        tools:layout="@layout/fragment_result">
         <action
-            android:id="@+id/action_RankingFragment_to_CategoryFragment"
-            app:destination="@id/CategoryFragment" />
+            android:id="@+id/action_RankingFragment_to_MenuFragment"
+            app:destination="@id/MenuFragment" />
 
     </fragment>
 
