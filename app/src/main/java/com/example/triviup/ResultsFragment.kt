@@ -28,10 +28,15 @@ class ResultsFragment : Fragment() {
     }
 
 
+<<<<<<< HEAD:app/src/main/java/com/example/triviup/ResultsFragment.kt
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.backToCategories.setOnClickListener {
             findNavController().navigate(ResultsFragmentDirections.actionResultsFragmentToCategoryFragment())
+=======
+        binding.buttonFirst.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_RankingFragment)
+>>>>>>> ranking:app/src/main/java/com/example/triviup/FirstFragment.kt
         }
     }
 

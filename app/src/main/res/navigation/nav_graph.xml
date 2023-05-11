@@ -44,4 +44,6 @@
             app:destination="@id/CategoryFragment" />
 
     </fragment>
+
+
 </navigation>
