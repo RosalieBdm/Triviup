@@ -15,5 +15,14 @@
     <string name="skip">Skip</string>
     <string name="username">Username</string>
     <string name="scoreboard">Scoreboard</string>
+<<<<<<< HEAD
     <string name="menu">Menu</string>
+=======
+    <string name="learn">Learn</string>
+    <string name="scoreboard_2">ScoreBoard</string>
+    <string name="play">Play</string>
+    <string name="menu">Menu</string>
+    <string name="new_fact">New Fact</string>
+    <string name="fact">Fact</string>
+>>>>>>> 1e9fe608fd13844061798ad9dc12bb6e99bd993d
 </resources>
