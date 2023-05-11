@@ -53,7 +53,7 @@
         android:id="@+id/button_to_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="@string/menu"
         android:translationX="160sp"
         android:translationY="660sp"/>
 
