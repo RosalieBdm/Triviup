@@ -49,8 +49,8 @@
             android:id="@+id/category_button"
             android:layout_width="200dp"
             android:layout_height="50dp"
-            android:text="Play"
             android:layout_marginTop="20dp"
+            android:text="@string/play"
             app:layout_constraintBottom_toTopOf="@+id/scoreboard_button"
             app:layout_constraintTop_toBottomOf="@+id/title_image"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,8 +60,17 @@
             android:id="@+id/scoreboard_button"
             android:layout_width="200dp"
             android:layout_height="50dp"
-            android:text="ScoreBoard"
+            android:text="@string/scoreboard_2"
             app:layout_constraintTop_toBottomOf="@+id/category_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/fact_button"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="@string/learn"
+            app:layout_constraintTop_toBottomOf="@+id/scoreboard_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_MenuFragment_to_RankingFragment"
             app:destination="@id/RankingFragment" />
+        <action
+            android:id="@+id/action_MenuFragment_to_factFragment"
+            app:destination="@id/factFragment" />
 
     </fragment>
 
@@ -85,6 +88,14 @@
             android:id="@+id/action_RankingFragment_to_MenuFragment"
             app:destination="@id/MenuFragment" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/factFragment"
+        android:name="com.example.triviup.FactFragment"
+        android:label="FactFragment" >
+        <action
+            android:id="@+id/action_factFragment_to_MenuFragment"
+            app:destination="@id/MenuFragment" />
     </fragment>
 
 
