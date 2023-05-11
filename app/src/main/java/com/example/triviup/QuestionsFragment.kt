@@ -6,6 +6,7 @@ import android.text.Html
 import android.util.Log
 import android.view.*
 
+import android.media.MediaPlayer
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -40,6 +41,7 @@ class QuestionsFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var difficulty : String
     private lateinit var questionAdapter : QuestionAdapter
+    private lateinit var mediaPlayer : MediaPlayer
 
     companion object{
         var score = 0
@@ -52,6 +54,8 @@ class QuestionsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        mediaPlayer = MediaPlayer.create(getActivity(), R.raw.count_down_audio)
         // Inflate the layout for this fragment
         _binding = FragmentQuestionsBinding.inflate(inflater)
         binding.lifecycleOwner = this
@@ -81,14 +85,11 @@ class QuestionsFragment : Fragment() {
             timer.start()
             questionAdapter.submitList(answersList)
         }
-
-
-
-
         return binding.root
     }
 
     fun getNextQuestion() : CountDownTimer{
+        mediaPlayer.start();
         var timer = object: CountDownTimer(10000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 // Update UI with the remaining time
@@ -131,6 +132,15 @@ class QuestionsFragment : Fragment() {
     fun waitNextQuestion(isCorrect : Boolean){
         if (isCorrect) {
             score+= 1*remainingTime
+            MediaPlayer.create(context, R.raw.correct).start();
+        }else{
+            MediaPlayer.create(context, R.raw.wrong).start();
+        }
+        if(mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.reset();
+            mediaPlayer.release();
+            mediaPlayer = MediaPlayer.create(context, R.raw.count_down_audio);
         }
         timer.cancel()
         binding.score.text = "score : ${score}"
@@ -175,6 +185,10 @@ class QuestionsFragment : Fragment() {
 
     override fun onDestroyView() {
         viewModel.deleteQuestions()
+        super.onDestroy();
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+        }
         super.onDestroyView()
     }
 
