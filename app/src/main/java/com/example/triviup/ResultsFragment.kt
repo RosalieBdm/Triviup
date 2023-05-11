@@ -30,7 +30,7 @@ class ResultsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.backToCategories.setOnClickListener {
-            findNavController().navigate(ResultsFragmentDirections.actionResultsFragmentToCategoryFragment())
+            //findNavController().navigate(ResultsFragmentDirections.actionResultsFragmentToCategoryFragment())
         }
     }
 

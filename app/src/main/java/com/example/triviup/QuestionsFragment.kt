@@ -152,7 +152,7 @@ class QuestionsFragment : Fragment() {
             findNavController().navigate(QuestionsFragmentDirections.actionQuestionsFragmentToCategoryFragment())
         }
         binding.buttonToResults.setOnClickListener {
-            findNavController().navigate(QuestionsFragmentDirections.actionQuestionsFragmentToResultsFragment())
+            findNavController().navigate(QuestionsFragmentDirections.actionQuestionsFragmentToResultFragment())
         }
         binding.buttonNextQuestion.setOnClickListener {
             binding.buttonNextQuestion.visibility = View.GONE

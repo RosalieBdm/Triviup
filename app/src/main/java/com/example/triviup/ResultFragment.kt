@@ -37,7 +37,7 @@ class ResultFragment : Fragment() {
     ): View? {
         databaseReference = Firebase.database.reference
         _binding = FragmentResultBinding.inflate(inflater)
-
+        binding.textView.text = "Score : ${QuestionsFragment.score}"
         party = Party(
             speed = 0f,
             maxSpeed = 30f,
@@ -48,11 +48,11 @@ class ResultFragment : Fragment() {
             position = Position.Relative(0.5, 0.15)
         )
         binding.submitButton.setOnClickListener {
-            sendScore(binding.edittext.text.toString(), Random.nextInt(0,501))
-            //findNavController().navigate(R.id.action_resultFragment_to_FirstFragment)
+            sendScore(binding.edittext.text.toString(), QuestionsFragment.score)
+            findNavController().navigate(R.id.action_ResultFragment_to_RankingFragment)
         }
         binding.skipButton.setOnClickListener {
-            //findNavController().navigate(R.id.action_resultFragment_to_FirstFragment)
+            findNavController().navigate(R.id.action_ResultFragment_to_RankingFragment)
         }
 
         binding.edittext.setOnEditorActionListener { v, actionId, event ->

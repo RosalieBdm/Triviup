@@ -26,22 +26,29 @@
             android:id="@+id/action_QuestionsFragment_to_CategoryFragment"
             app:destination="@id/CategoryFragment" />
         <action
-            android:id="@+id/action_QuestionsFragment_to_ResultsFragment"
-            app:destination="@id/ResultsFragment" />
+            android:id="@+id/action_QuestionsFragment_to_ResultFragment"
+            app:destination="@id/ResultFragment" />
         <argument
             android:name="category"
             app:argType="com.example.triviup.model.Category" />
 
     </fragment>
     <fragment
-        android:id="@+id/ResultsFragment"
-        android:name="com.example.triviup.ResultsFragment"
+        android:id="@+id/ResultFragment"
+        android:name="com.example.triviup.ResultFragment"
         android:label="Results"
         tools:layout="@layout/fragment_results">
 
         <action
-            android:id="@+id/action_ResultsFragment_to_CategoryFragment"
-            app:destination="@id/CategoryFragment" />
+            android:id="@+id/action_ResultFragment_to_RankingFragment"
+            app:destination="@id/RankingFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/RankingFragment"
+        android:name="com.example.triviup.RankingFragment"
+        android:label="Results"
+        tools:layout="@layout/fragment_results">
 
     </fragment>
 
