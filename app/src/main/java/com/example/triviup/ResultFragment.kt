@@ -49,10 +49,10 @@ class ResultFragment : Fragment() {
         )
         binding.submitButton.setOnClickListener {
             sendScore(binding.edittext.text.toString(), Random.nextInt(0,501))
-            findNavController().navigate(R.id.action_resultFragment_to_FirstFragment)
+            //findNavController().navigate(R.id.action_resultFragment_to_FirstFragment)
         }
         binding.skipButton.setOnClickListener {
-            findNavController().navigate(R.id.action_resultFragment_to_FirstFragment)
+            //findNavController().navigate(R.id.action_resultFragment_to_FirstFragment)
         }
 
         binding.edittext.setOnEditorActionListener { v, actionId, event ->

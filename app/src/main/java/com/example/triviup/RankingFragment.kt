@@ -59,8 +59,7 @@ class RankingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonToResult.setOnClickListener {
-            println("Test should trigger this print")
-            findNavController().navigate(R.id.action_RankingFragment_to_ResultFragment)
+            //findNavController().navigate(R.id.action_RankingFragment_to_ResultFragment)
         }
 
     }
