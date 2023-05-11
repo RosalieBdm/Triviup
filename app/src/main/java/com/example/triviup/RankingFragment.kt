@@ -48,7 +48,11 @@ class RankingFragment : Fragment() {
         // observer for ranks
         viewModel.rankList.observe(viewLifecycleOwner) { rankList ->
             rankList?.let {
-                rankListAdapter.submitList(rankList)
+                if(rankList.size >10){
+                    rankListAdapter.submitList(rankList.subList(0,10))
+                }else{
+                    rankListAdapter.submitList(rankList)
+                }
             }
         }
 
