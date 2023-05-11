@@ -73,7 +73,7 @@ class QuestionsFragment : Fragment() {
                 viewModel.onQuestionItemClicked(answer, this)
             })
         recyclerView.adapter = questionAdapter
-
+        enableButtons = true
         viewModel.questionList.observe(viewLifecycleOwner) { questions ->
             questionList = questions
             timer = getNextQuestion()
@@ -149,9 +149,13 @@ class QuestionsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.buttonPrevious.setOnClickListener {
+            viewModel.deleteQuestions()
+            score = 0
             findNavController().navigate(QuestionsFragmentDirections.actionQuestionsFragmentToCategoryFragment())
         }
         binding.buttonToResults.setOnClickListener {
+            viewModel.deleteQuestions()
+            questionNumber = 1
             findNavController().navigate(QuestionsFragmentDirections.actionQuestionsFragmentToResultFragment())
         }
         binding.buttonNextQuestion.setOnClickListener {

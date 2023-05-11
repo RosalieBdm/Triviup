@@ -59,6 +59,8 @@ class RankingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonToResult.setOnClickListener {
+            QuestionsFragment.score = 0
+
             findNavController().navigate(R.id.action_RankingFragment_to_CategoryFragment)
         }
 
