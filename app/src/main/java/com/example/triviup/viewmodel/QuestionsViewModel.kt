@@ -2,7 +2,6 @@ package com.example.triviup.viewmodel
 
 import android.app.Application
 import android.text.Html
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.triviup.QuestionsFragment
 import com.example.triviup.database.QuestionDatabaseDao
@@ -12,6 +11,7 @@ import com.example.triviup.network.DataFetchStatus
 import com.example.triviup.network.QuestionResponse
 import com.example.triviup.network.TriviaApi
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class QuestionsViewModel(
     private val category : Category,
@@ -52,7 +52,7 @@ class QuestionsViewModel(
     }
 
     fun onQuestionItemClicked(answer: String, fragment : QuestionsFragment) {
-        var answerHtml = Html.fromHtml(answer, Html.FROM_HTML_MODE_LEGACY)
+        val answerHtml = Html.fromHtml(answer, Html.FROM_HTML_MODE_LEGACY)
             .toString()
         if (answerHtml == fragment.currentQuestion.correct_answer){
             fragment.waitNextQuestion(true)
@@ -71,7 +71,7 @@ class QuestionsViewModel(
                 _questionList.value = questionResponse.results
                 _dataFetchStatus.value = DataFetchStatus.DONE
             } catch (e: Exception) {
-                Log.d("error", "pas de questions: ${e.message}")
+                Timber.tag("error").d("pas de questions: %s", e.message)
                 _dataFetchStatus.value = DataFetchStatus.ERROR
                 _questionList.value = arrayListOf()
             }

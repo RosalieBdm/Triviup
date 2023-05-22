@@ -1,6 +1,5 @@
 package com.example.triviup.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.triviup.model.Question
 
@@ -24,10 +23,4 @@ interface QuestionDatabaseDao {
 
     @Query("SELECT * FROM questions ORDER BY id ASC LIMIT 1")
     suspend fun getFirstQuestion(): Question
-
-    @Query("SELECT * from questions")
-    suspend fun getAllQuestions(): List<Question>
-
-    @Query("SELECT * from questions")
-    suspend fun getNextQuestion(): List<Question>
 }

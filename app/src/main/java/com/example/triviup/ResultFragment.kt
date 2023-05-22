@@ -1,8 +1,8 @@
 package com.example.triviup
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +19,6 @@ import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
 import nl.dionsegijn.konfetti.core.emitter.Emitter
 import java.util.concurrent.TimeUnit
-import kotlin.random.Random
 
 
 class ResultFragment : Fragment() {
@@ -31,10 +30,11 @@ class ResultFragment : Fragment() {
 
     private lateinit var party : Party
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         databaseReference = Firebase.database.reference
         _binding = FragmentResultBinding.inflate(inflater)
         binding.textView.text = "Score : ${QuestionsFragment.score}"
@@ -55,7 +55,7 @@ class ResultFragment : Fragment() {
             findNavController().navigate(R.id.action_ResultFragment_to_RankingFragment)
         }
 
-        binding.edittext.setOnEditorActionListener { v, actionId, event ->
+        binding.edittext.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val imm = v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(v.windowToken, 0)
@@ -75,7 +75,7 @@ class ResultFragment : Fragment() {
         binding.konfettiView.start(party)
     }
 
-    fun sendScore(name: String, score: Int) {
+    private fun sendScore(name: String, score: Int) {
         val rank = Rank(name, score)
         val id = databaseReference.push().key!!
         databaseReference.child("Ranking").child(id).setValue(rank)

@@ -22,13 +22,13 @@ class CategoryFragment : Fragment() {
     private lateinit var viewModel: CategoryViewModel
     private lateinit var viewModelFactory: CategoryViewModelFactory
 
-    private var _binding: FragmentCategoryBinding? = null;
+    private var _binding: FragmentCategoryBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCategoryBinding.inflate(inflater)
 
         val application = requireNotNull(this.activity).application

@@ -10,10 +10,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.triviup.adapter.RankListAdapter
 import com.example.triviup.databinding.FragmentRankingBinding
 import com.example.triviup.viewmodel.RankListViewModel
+import com.example.triviup.viewmodel.RankListViewModelFactory
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.ltu.m7019e.v23.themoviedb.viewmodel.RankListViewModelFactory
 
 
 class RankingFragment : Fragment() {
@@ -31,7 +31,7 @@ class RankingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         databaseReference = Firebase.database.reference
         _binding = FragmentRankingBinding.inflate(inflater)
 

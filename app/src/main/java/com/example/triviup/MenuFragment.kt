@@ -13,13 +13,13 @@ import com.example.triviup.databinding.FragmentMenuBinding
 
 class MenuFragment : Fragment() {
 
-    private var _binding: FragmentMenuBinding? = null;
+    private var _binding: FragmentMenuBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMenuBinding.inflate(inflater)
         val svg = SVG.getFromResource(resources, R.raw.triviup_image)
         val drawable = PictureDrawable(svg.renderToPicture())

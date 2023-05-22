@@ -11,13 +11,13 @@ import com.example.triviup.model.Category
 
 class DifficultyFragment : Fragment() {
     private lateinit var category: Category
-    private var _binding: FragmentDifficultyBinding? = null;
+    private var _binding: FragmentDifficultyBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDifficultyBinding.inflate(inflater)
 
         category = DifficultyFragmentArgs.fromBundle(requireArguments()).category

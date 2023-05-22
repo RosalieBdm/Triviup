@@ -1,10 +1,10 @@
 package com.example.triviup
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.PictureDrawable
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Html
-import android.util.Log
 import android.view.*
 
 import android.media.MediaPlayer
@@ -22,6 +22,8 @@ import com.example.triviup.viewmodel.QuestionsViewModel
 import com.example.triviup.viewmodel.QuestionsViewModelFactory
 import com.example.triviup.database.QuestionDatabaseDao
 import com.example.triviup.model.Question
+import com.example.triviup.network.DataFetchStatus
+import timber.log.Timber
 import kotlin.random.Random
 
 
@@ -53,6 +55,7 @@ class QuestionsFragment : Fragment() {
         var correctAnswer = ""
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -91,15 +94,36 @@ class QuestionsFragment : Fragment() {
         viewModel.questionList.observe(viewLifecycleOwner) { questions ->
             questionList = questions
             timer = getNextQuestion()
-            timer.start()
+
             questionAdapter.submitList(answersList)
         }
+
+        viewModel.dataFetchStatus.observe(viewLifecycleOwner) { status ->
+            status?.let {
+                when (status) {
+                    DataFetchStatus.LOADING -> {
+                        binding.statusImage.visibility = View.VISIBLE
+                        binding.statusImage.setImageResource(R.drawable.loading_animation)
+                    }
+                    DataFetchStatus.ERROR -> {
+                        binding.statusImage.visibility = View.VISIBLE
+                        binding.statusImage.setImageResource(R.drawable.ic_connection_error)
+                    }
+                    DataFetchStatus.DONE -> {
+                        timer.start()
+                        binding.statusImage.visibility = View.GONE
+                    }
+                }
+            }
+        }
+
+
         return binding.root
     }
 
-    fun getNextQuestion() : CountDownTimer{
-        mediaPlayer.start();
-        var timer = object: CountDownTimer(10000, 1000) {
+    private fun getNextQuestion() : CountDownTimer{
+        val timer = object: CountDownTimer(10000, 1000) {
+            @SuppressLint("SetTextI18n")
             override fun onTick(millisUntilFinished: Long) {
                 // Update UI with the remaining time
                 remainingTime= (millisUntilFinished / 1000).toInt()
@@ -111,7 +135,7 @@ class QuestionsFragment : Fragment() {
             }
         }
         if (questionList.isNotEmpty()) {
-
+            mediaPlayer.start()
             currentQuestion = questionList[questionNumber-1]
             questionNumber += 1
 
@@ -132,12 +156,13 @@ class QuestionsFragment : Fragment() {
             binding.questionTextView.text = currentQuestion.question
             questionAdapter.submitList(answersList)
         } else {
-            Log.d("getQuestionsError", "pas de questions , ${questionList.size}")
-            binding.questionTextView.text = "no question"
+            Timber.tag("getQuestionsError").d("pas de questions , %s", questionList.size)
+            binding.questionTextView.text = "Please turn on Internet connection"
         }
         return timer
     }
 
+    @SuppressLint("SetTextI18n")
     fun waitNextQuestion(isCorrect : Boolean){
         if (isCorrect) {
             score+= 1*remainingTime
@@ -167,6 +192,7 @@ class QuestionsFragment : Fragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.buttonToResults.setOnClickListener {
             if(mediaPlayer != null) {

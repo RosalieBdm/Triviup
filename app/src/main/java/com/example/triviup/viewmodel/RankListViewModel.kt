@@ -1,8 +1,6 @@
 package com.example.triviup.viewmodel
 
 import android.app.Application
-import android.graphics.Movie
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,8 +10,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
+import timber.log.Timber
 
-class RankListViewModel(application: Application,private val databaseReference: DatabaseReference) :  AndroidViewModel(application) {
+class RankListViewModel(application: Application, databaseReference: DatabaseReference) :  AndroidViewModel(application) {
 
     private val _rankList = MutableLiveData<List<Rank>>()
     val rankList: LiveData<List<Rank>>
@@ -29,7 +28,8 @@ class RankListViewModel(application: Application,private val databaseReference: 
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.w("Error", "loadPost:onCancelled", Exception("Error loadPost:onCancelled"))
+                Timber.tag("Error")
+                    .w(Exception("Error loadPost:onCancelled"), "loadPost:onCancelled")
             }
 
         })

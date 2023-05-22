@@ -1,4 +1,4 @@
-package com.ltu.m7019e.v23.themoviedb.viewmodel
+package com.example.triviup.viewmodel
 
 import FactViewModel
 import android.app.Application
