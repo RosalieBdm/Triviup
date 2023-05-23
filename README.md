@@ -16,12 +16,12 @@
         - if the answer is wrong or if the timer is up, the score won't be incremented
         - a "next question" button leads to the next questions
         - at the end of the 10 questions, you can go to the results
-    # Fragment Results:
+   # Fragment Results:
         - shows the final score
         - enter your username and submit it to the firebase
-    # Fragment Ranking:
+   # Fragment Ranking:
         - fetchs the scoreboard from the firebase
-    # Fragment Facts:
+   # Fragment Facts:
         - shows random facts
 
     
